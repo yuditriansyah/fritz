@@ -1,0 +1,107 @@
+
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+/* Fritzy Fan Website Custom Styling */
+
+@layer base {
+  :root {
+    --background: 255 255 255;
+    --foreground: 51 51 51;
+
+    --card: 255 255 255;
+    --card-foreground: 51 51 51;
+
+    --popover: 255 255 255;
+    --popover-foreground: 51 51 51;
+
+    --primary: 255 182 193;
+    --primary-foreground: 51 51 51;
+
+    --secondary: 230 230 250;
+    --secondary-foreground: 51 51 51;
+
+    --muted: 248 248 248;
+    --muted-foreground: 115 115 115;
+
+    --accent: 255 228 225;
+    --accent-foreground: 51 51 51;
+
+    --destructive: 239 68 68;
+    --destructive-foreground: 255 255 255;
+
+    --border: 229 229 229;
+    --input: 229 229 229;
+    --ring: 255 182 193;
+
+    --radius: 0.75rem;
+
+    --sidebar-background: 255 255 255;
+    --sidebar-foreground: 51 51 51;
+    --sidebar-primary: 255 182 193;
+    --sidebar-primary-foreground: 51 51 51;
+    --sidebar-accent: 255 228 225;
+    --sidebar-accent-foreground: 51 51 51;
+    --sidebar-border: 229 229 229;
+    --sidebar-ring: 255 182 193;
+  }
+}
+
+@layer base {
+  * {
+    @apply border-border;
+  }
+
+  body {
+    @apply bg-gradient-to-br from-fritzy-pink/20 to-fritzy-purple/20 text-foreground font-nunito;
+    min-height: 100vh;
+  }
+
+  h1, h2, h3, h4, h5, h6 {
+    @apply font-poppins;
+  }
+}
+
+@layer components {
+  .fritzy-gradient {
+    @apply bg-gradient-to-r from-fritzy-pink to-fritzy-purple;
+  }
+  
+  .fritzy-card {
+    @apply bg-white/80 backdrop-blur-sm border border-fritzy-pink/30 shadow-lg hover:shadow-xl transition-all duration-300;
+  }
+  
+  .fritzy-button {
+    @apply bg-gradient-to-r from-fritzy-pink to-fritzy-purple text-gray-800 font-semibold py-3 px-6 rounded-full hover:shadow-lg transition-all duration-300 transform hover:scale-105;
+  }
+  
+  .social-float {
+    @apply fixed right-6 top-1/2 transform -translate-y-1/2 z-50 flex flex-col gap-3;
+  }
+  
+  .hero-text {
+    @apply animate-fade-in;
+  }
+  
+  .masonry-grid {
+    column-count: 1;
+    column-gap: 1rem;
+  }
+  
+  @media (min-width: 640px) {
+    .masonry-grid {
+      column-count: 2;
+    }
+  }
+  
+  @media (min-width: 1024px) {
+    .masonry-grid {
+      column-count: 3;
+    }
+  }
+  
+  .masonry-item {
+    @apply break-inside-avoid mb-4;
+  }
+}
