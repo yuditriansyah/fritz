@@ -4,6 +4,7 @@ import { Card, CardContent } from '@/components/ui/card';
 import { Button } from '@/components/ui/button';
 import { Dialog, DialogContent, DialogTrigger } from '@/components/ui/dialog';
 import { Badge } from '@/components/ui/badge';
+import { title } from 'process';
 
 const Gallery = () => {
   const [selectedCategory, setSelectedCategory] = useState('all');
@@ -18,10 +19,31 @@ const Gallery = () => {
   const galleryImages = [
     {
       id: 1,
-      src: 'https://images.unsplash.com/photo-1649972904349-6e44c42644a7?w=400&h=600&fit=crop&auto=format',
+      src: 'https://image.idntimes.com/post/20250603/1000008825-e87e81eb9e9782f67c148903bdbd2991.jpg?tr=w-1920,f-webp,q-75&width=1920&format=webp&quality=75',
       category: 'performance',
-      title: 'Concert Performance',
-      date: '2024-01-15'
+      title: 'Go and Fight Music Video',
+      date: '2025-05-22'
+    },
+    {
+      id: 2,
+      src: 'https://i.pinimg.com/736x/f1/4f/44/f14f4408f0de68c1b0c4b6eebb9150e4.jpg',
+      category: 'performance',
+      title: 'Go and Fight Music Video',
+      date: '2025-05-22'
+    },
+    {
+      id: 3,
+      src: 'https://i.pinimg.com/736x/a8/77/12/a87712e277e5d4a0316594272d67a922.jpg',
+      category: 'performance',
+      title: 'Go and Fight Music Video',
+      date: '2025-05-22'
+    },
+    {
+      id: 4,
+      src: 'https://i.pinimg.com/736x/e2/eb/2d/e2eb2ded16128474fa0e052b45104761.jpg',
+      category: 'performance',
+      title: 'Go and Fight Music Video',
+      date: '2025-05-22'
     },
     {
       id: 2,

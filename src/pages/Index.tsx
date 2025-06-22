@@ -1,10 +1,10 @@
-
 import React from 'react';
 import HeroSection from '@/components/HeroSection';
 import { Card, CardContent } from '@/components/ui/card';
 import { Button } from '@/components/ui/button';
 import { Link } from 'react-router-dom';
-import { Calendar, Image, Newspaper, Users, Heart, Star } from 'lucide-react';
+import { Calendar, Image, Star } from 'lucide-react';
+import { motion } from 'framer-motion';
 
 const Index = () => {
   const quickLinks = [
@@ -23,17 +23,10 @@ const Index = () => {
       color: 'from-fritzy-purple to-fritzy-purple-dark'
     },
     {
-      title: 'Latest News',
-      description: 'Stay updated with announcements and media coverage',
-      icon: Newspaper,
-      link: '/news',
-      color: 'from-pink-400 to-purple-400'
-    },
-    {
-      title: 'Join Community',
-      description: 'Become part of the Fritzy Force family',
-      icon: Users,
-      link: '/about',
+      title: 'Timeline',
+      description: 'See Fritzy\'s journey and milestones as an idol',
+      icon: Star,
+      link: '/timeline',
       color: 'from-purple-400 to-fritzy-pink'
     }
   ];
@@ -59,15 +52,35 @@ const Index = () => {
     }
   ];
 
+  const fadeInUp = {
+    hidden: { opacity: 0, y: 40 },
+    visible: (i: number) => ({
+      opacity: 1,
+      y: 0,
+      transition: { delay: i * 0.15, duration: 0.7, type: 'spring' as const, stiffness: 60 },
+    }),
+  };
+
   return (
     <div className="min-h-screen">
       {/* Hero Section */}
       <HeroSection />
 
+      {/* Mobile-only #BetterWithFritzy Banner */}
+      <div className="flex w-full justify-center items-center py-6 sm:py-8 md:hidden">
+        <span className="text-2xl sm:text-3xl font-bold text-fritzy-pink-dark text-center px-4">#BetterWithFritzy</span>
+      </div>
+
       {/* Quick Links Section */}
-      <div className="py-20 px-4 bg-gradient-to-br from-white to-fritzy-pink/10">
+      <motion.div
+        className="py-20 px-4 bg-gradient-to-br from-white to-fritzy-pink/10"
+        initial="hidden"
+        whileInView="visible"
+        viewport={{ once: true, amount: 0.2 }}
+        variants={fadeInUp}
+      >
         <div className="container mx-auto max-w-6xl">
-          <div className="text-center mb-12">
+          <div className="text-center mb-12 flex flex-col items-center justify-center">
             <h2 className="text-3xl md:text-4xl font-poppins font-bold text-gray-800 mb-4">
               Explore Fritzy's World
             </h2>
@@ -76,35 +89,52 @@ const Index = () => {
             </p>
           </div>
 
-          <div className="grid md:grid-cols-2 lg:grid-cols-4 gap-6">
-            {quickLinks.map((item, index) => (
-              <Link key={index} to={item.link}>
-                <Card className="fritzy-card h-full group cursor-pointer hover:transform hover:scale-105 transition-all duration-300">
-                  <CardContent className="p-6 text-center h-full flex flex-col">
-                    <div className={`w-16 h-16 mx-auto mb-4 rounded-full bg-gradient-to-r ${item.color} flex items-center justify-center group-hover:scale-110 transition-transform duration-300`}>
-                      <item.icon className="w-8 h-8 text-white" />
-                    </div>
-                    <h3 className="text-xl font-poppins font-bold text-gray-800 mb-2 group-hover:text-fritzy-pink-dark transition-colors">
-                      {item.title}
-                    </h3>
-                    <p className="text-gray-600 font-nunito text-sm flex-grow">
-                      {item.description}
-                    </p>
-                    <div className="mt-4">
-                      <Button variant="outline" size="sm" className="border-fritzy-pink-dark text-fritzy-pink-dark hover:bg-fritzy-pink/10 group-hover:border-fritzy-pink group-hover:text-fritzy-pink transition-colors">
-                        Explore
-                      </Button>
-                    </div>
-                  </CardContent>
-                </Card>
-              </Link>
-            ))}
+          <div className="flex justify-center">
+            <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
+              {quickLinks.map((item, index) => (
+                <motion.div
+                  key={index}
+                  custom={index}
+                  initial="hidden"
+                  whileInView="visible"
+                  viewport={{ once: true, amount: 0.2 }}
+                  variants={fadeInUp}
+                >
+                  <Link to={item.link} className="flex justify-center w-full">
+                    <Card className="fritzy-card h-full group cursor-pointer hover:transform hover:scale-105 transition-all duration-300 mx-auto">
+                      <CardContent className="p-6 text-center h-full flex flex-col">
+                        <div className={`w-16 h-16 mx-auto mb-4 rounded-full bg-gradient-to-r ${item.color} flex items-center justify-center group-hover:scale-110 transition-transform duration-300`}>
+                          <item.icon className="w-8 h-8 text-white" />
+                        </div>
+                        <h3 className="text-xl font-poppins font-bold text-gray-800 mb-2 group-hover:text-fritzy-pink-dark transition-colors">
+                          {item.title}
+                        </h3>
+                        <p className="text-gray-600 font-nunito text-sm flex-grow">
+                          {item.description}
+                        </p>
+                        <div className="mt-4">
+                          <Button variant="outline" size="sm" className="border-fritzy-pink-dark text-fritzy-pink-dark hover:bg-fritzy-pink/10 group-hover:border-fritzy-pink group-hover:text-fritzy-pink transition-colors">
+                            Explore
+                          </Button>
+                        </div>
+                      </CardContent>
+                    </Card>
+                  </Link>
+                </motion.div>
+              ))}
+            </div>
           </div>
         </div>
-      </div>
+      </motion.div>
 
       {/* Recent Highlights */}
-      <div className="py-20 px-4">
+      <motion.div
+        className="py-20 px-4"
+        initial="hidden"
+        whileInView="visible"
+        viewport={{ once: true, amount: 0.2 }}
+        variants={fadeInUp}
+      >
         <div className="container mx-auto max-w-6xl">
           <div className="text-center mb-12">
             <h2 className="text-3xl md:text-4xl font-poppins font-bold text-gray-800 mb-4">
@@ -117,51 +147,43 @@ const Index = () => {
 
           <div className="grid md:grid-cols-3 gap-8">
             {recentHighlights.map((highlight, index) => (
-              <Card key={index} className="fritzy-card group overflow-hidden">
-                <div className="relative">
+              <motion.div
+                key={index}
+                custom={index}
+                initial="hidden"
+                whileInView="visible"
+                viewport={{ once: true, amount: 0.2 }}
+                variants={fadeInUp}
+              >
+                <Card className={`fritzy-card group overflow-hidden ${highlight.title === 'New Album Announcement' ? 'border-fritzy-pink-dark border-4 shadow-lg' : ''}`}>
                   <img
                     src={highlight.image}
                     alt={highlight.title}
-                    className="w-full h-48 object-cover group-hover:scale-105 transition-transform duration-300"
+                    className="w-full h-48 object-cover mb-4 rounded-xl group-hover:scale-105 transition-transform duration-300"
                   />
-                  <div className="absolute top-4 right-4">
-                    <div className="bg-white/90 backdrop-blur-sm rounded-full p-2">
-                      <Star className="w-4 h-4 text-fritzy-pink-dark fill-current" />
-                    </div>
-                  </div>
-                </div>
-                <CardContent className="p-6">
-                  <div className="flex items-center gap-2 mb-3">
-                    <Calendar className="w-4 h-4 text-fritzy-pink-dark" />
-                    <span className="text-sm text-gray-500 font-nunito">{highlight.date}</span>
-                  </div>
-                  <h3 className="text-xl font-poppins font-bold text-gray-800 mb-2 group-hover:text-fritzy-pink-dark transition-colors">
-                    {highlight.title}
-                  </h3>
-                  <p className="text-gray-600 font-nunito text-sm leading-relaxed">
-                    {highlight.description}
-                  </p>
-                </CardContent>
-              </Card>
+                  <CardContent className="p-6">
+                    <h3 className="text-xl font-poppins font-bold text-gray-800 mb-2">
+                      {highlight.title}
+                    </h3>
+                    <p className="text-gray-600 font-nunito text-sm mb-2">
+                      {highlight.description}
+                    </p>
+                    <span className="text-xs text-gray-400 font-nunito">
+                      {highlight.date}
+                    </span>
+                  </CardContent>
+                </Card>
+              </motion.div>
             ))}
           </div>
-
-          <div className="text-center mt-12">
-            <Link to="/news">
-              <Button className="fritzy-button">
-                View All News
-              </Button>
-            </Link>
-          </div>
         </div>
-      </div>
+      </motion.div>
 
       {/* Newsletter Signup */}
       <div className="py-20 px-4 bg-gradient-to-r from-fritzy-pink/20 to-fritzy-purple/20">
         <div className="container mx-auto max-w-4xl text-center">
           <Card className="fritzy-card">
             <CardContent className="p-12">
-              <Heart className="w-16 h-16 text-fritzy-pink-dark mx-auto mb-6 fill-current" />
               <h2 className="text-3xl md:text-4xl font-poppins font-bold text-gray-800 mb-4">
                 Stay Connected with Fritzy
               </h2>

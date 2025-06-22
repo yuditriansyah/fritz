@@ -1,4 +1,3 @@
-
 import React, { useState } from 'react';
 import { Card, CardContent, CardHeader, CardTitle } from '@/components/ui/card';
 import { Button } from '@/components/ui/button';
@@ -30,9 +29,9 @@ const About = () => {
   };
 
   const communityStats = [
-    { icon: Users, label: 'Active Members', value: '50,000+' },
-    { icon: Heart, label: 'Countries', value: '25+' },
-    { icon: Instagram, label: 'Social Followers', value: '500K+' }
+    { icon: Users, label: 'Active Members', value: '12.000' },
+    { icon: Heart, label: 'Project', value: '1+' },
+    { icon: Instagram, label: 'Social Followers', value: '12,000+' }
   ];
 
   const guidelines = [
@@ -50,7 +49,7 @@ const About = () => {
         {/* Header */}
         <div className="text-center mb-16">
           <h1 className="text-4xl md:text-5xl font-poppins font-bold text-gray-800 mb-4">
-            About Fritzy Force
+            About Fritzy Rosmerian
           </h1>
           <p className="text-xl text-gray-600 font-nunito max-w-3xl mx-auto leading-relaxed">
             We are a passionate global community of fans united by our love and support for Fritzy Rosmerian. 
@@ -87,7 +86,7 @@ const About = () => {
               </CardHeader>
               <CardContent className="space-y-4 font-nunito text-gray-700 leading-relaxed">
                 <p>
-                  Fritzy Force was founded in 2020 by a group of dedicated fans who wanted to create 
+                  Fritzy Rosmerian was founded in 2020 by a group of dedicated fans who wanted to create 
                   a supportive and positive space for fellow admirers of Fritzy Rosmerian. What started 
                   as a small online community has grown into a global family of over 50,000 members.
                 </p>
@@ -160,7 +159,7 @@ const About = () => {
                   Join Our Community
                 </CardTitle>
                 <p className="text-gray-600 font-nunito text-center">
-                  Become part of the Fritzy Force family and connect with fellow fans worldwide!
+                  Become part of the Fritzy Rosmerian family and connect with fellow fans worldwide!
                 </p>
               </CardHeader>
               <CardContent>
@@ -263,7 +262,7 @@ const About = () => {
                   </div>
 
                   <Button type="submit" className="w-full fritzy-button">
-                    Join Fritzy Force
+                    Join Fritzy Rosmerian
                   </Button>
                 </form>
               </CardContent>

@@ -1,4 +1,3 @@
-
 import React, { useState } from 'react';
 import { Link, useLocation } from 'react-router-dom';
 import { Menu, X, Heart } from 'lucide-react';
@@ -11,8 +10,7 @@ const Navigation = () => {
     { path: '/', label: 'Home' },
     { path: '/gallery', label: 'Gallery' },
     { path: '/schedule', label: 'Schedule' },
-    { path: '/news', label: 'News' },
-    { path: '/about', label: 'About Us' },
+    { path: '/timeline', label: 'Timeline' },
   ];
 
   const isActive = (path: string) => location.pathname === path;
@@ -24,7 +22,7 @@ const Navigation = () => {
           {/* Logo */}
           <Link to="/" className="flex items-center space-x-2 text-xl font-poppins font-bold text-gray-800">
             <Heart className="h-6 w-6 text-fritzy-pink-dark fill-current" />
-            <span>Fritzy Force</span>
+            <span>Fritzy Rosmerian</span>
           </Link>
 
           {/* Desktop Navigation */}

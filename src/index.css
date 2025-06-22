@@ -1,50 +1,40 @@
-
 @tailwind base;
 @tailwind components;
 @tailwind utilities;
 
-/* Fritzy Fan Website Custom Styling */
-
 @layer base {
   :root {
-    --background: 255 255 255;
-    --foreground: 51 51 51;
+    --background: 250 218 221; /* Rose Quartz */
+    --foreground: 51 51 51; /* Dark Charcoal */
 
-    --card: 255 255 255;
+    --card: 255 255 255; /* Pure White */
     --card-foreground: 51 51 51;
 
-    --popover: 255 255 255;
+    --popover: 255 255 255; /* Pure White */
     --popover-foreground: 51 51 51;
 
-    --primary: 255 182 193;
+    --primary: 250 218 221; /* Rose Quartz */
     --primary-foreground: 51 51 51;
 
-    --secondary: 230 230 250;
+    --secondary: 216 207 255; /* Soft Lavender */
     --secondary-foreground: 51 51 51;
 
-    --muted: 248 248 248;
-    --muted-foreground: 115 115 115;
+    --muted: 255 255 255; /* Changed to Pure White */
+    --muted-foreground: 51 51 51;
 
-    --accent: 255 228 225;
+    --accent: 250 218 221; /* Rose Quartz */
     --accent-foreground: 51 51 51;
 
     --destructive: 239 68 68;
     --destructive-foreground: 255 255 255;
 
-    --border: 229 229 229;
-    --input: 229 229 229;
-    --ring: 255 182 193;
+    --border: 250 218 221; /* Rose border */
+    --input: 255 255 255; /* Pure White input */
+    --ring: 250 218 221;
 
     --radius: 0.75rem;
 
-    --sidebar-background: 255 255 255;
-    --sidebar-foreground: 51 51 51;
-    --sidebar-primary: 255 182 193;
-    --sidebar-primary-foreground: 51 51 51;
-    --sidebar-accent: 255 228 225;
-    --sidebar-accent-foreground: 51 51 51;
-    --sidebar-border: 229 229 229;
-    --sidebar-ring: 255 182 193;
+    --sidebar-background: 255 255 255; /* Pure White sidebar */
   }
 }
 
@@ -54,39 +44,102 @@
   }
 
   body {
-    @apply bg-gradient-to-br from-fritzy-pink/20 to-fritzy-purple/20 text-foreground font-nunito;
+    background: #fadadd !important; /* Rose Quartz background */
     min-height: 100vh;
+    color: #333333 !important; /* Force dark text */
+    @apply text-foreground font-nunito;
   }
 
   h1, h2, h3, h4, h5, h6 {
     @apply font-poppins;
+    color: #333333 !important; /* Force dark headings */
   }
 }
 
 @layer components {
   .fritzy-gradient {
-    @apply bg-gradient-to-r from-fritzy-pink to-fritzy-purple;
+    background: linear-gradient(90deg, #FADADD 0%, #D8CFFF 100%);
   }
   
   .fritzy-card {
-    @apply bg-white/80 backdrop-blur-sm border border-fritzy-pink/30 shadow-lg hover:shadow-xl transition-all duration-300;
+    background: #ffffff !important; /* Force pure white */
+    border: 1px solid #ffffff !important; /* Pure white border */
+    box-shadow: 0 4px 24px 0 rgba(250,218,221,0.15);
+    border-radius: 1.25rem;
+    padding: 2.5em 2em;
+    color: #333333 !important; /* Force dark text */
+    transition: box-shadow 0.3s, transform 0.3s;
+  }
+  .fritzy-card:hover {
+    box-shadow: 0 8px 32px 0 rgba(250,218,221,0.25);
+    transform: translateY(-4px) scale(1.02);
   }
   
   .fritzy-button {
-    @apply bg-gradient-to-r from-fritzy-pink to-fritzy-purple text-gray-800 font-semibold py-3 px-6 rounded-full hover:shadow-lg transition-all duration-300 transform hover:scale-105;
+    background: linear-gradient(135deg, #FFB6C1 0%, #FFC0CB 50%, #FFCCCB 100%) !important; /* Blossom gradient */
+    color: #2d1b1b !important; /* Dark brown text for contrast */
+    font-weight: 600;
+    padding: 0.85em 2.2em;
+    border-radius: 9999px;
+    border: 2px solid #FFB6C1 !important; /* Light pink border */
+    box-shadow: 0 4px 15px 0 rgba(255, 182, 193, 0.3), 0 2px 8px 0 rgba(255, 192, 203, 0.2);
+    transition: all 0.3s ease;
+    cursor: pointer;
+    text-shadow: 0 1px 2px rgba(255, 255, 255, 0.8);
+  }
+  .fritzy-button:hover {
+    background: linear-gradient(135deg, #FF91A4 0%, #FFB6C1 50%, #FFC0CB 100%) !important; /* Deeper blossom on hover */
+    color: #2d1b1b !important;
+    box-shadow: 0 6px 25px 0 rgba(255, 145, 164, 0.4), 0 4px 15px 0 rgba(255, 182, 193, 0.3);
+    transform: translateY(-2px) scale(1.05);
+    border: 2px solid #FF91A4 !important;
+  }
+  .fritzy-button:active {
+    transform: translateY(0) scale(1.02);
+    box-shadow: 0 2px 10px 0 rgba(255, 182, 193, 0.3);
+  }
+  
+  /* Additional button fixes */
+  button, .btn, [type="button"], [type="submit"] {
+    background: linear-gradient(135deg, #FFB6C1 0%, #FFC0CB 50%, #FFCCCB 100%) !important;
+    color: #2d1b1b !important;
+    border: 2px solid #FFB6C1 !important;
+    border-radius: 9999px;
+    padding: 0.75em 1.5em;
+    font-weight: 600;
+    box-shadow: 0 4px 15px 0 rgba(255, 182, 193, 0.3);
+    transition: all 0.3s ease;
+  }
+  
+  button:hover, .btn:hover, [type="button"]:hover, [type="submit"]:hover {
+    background: linear-gradient(135deg, #FF91A4 0%, #FFB6C1 50%, #FFC0CB 100%) !important;
+    color: #2d1b1b !important;
+    transform: translateY(-2px) scale(1.05);
+    box-shadow: 0 6px 25px 0 rgba(255, 145, 164, 0.4);
   }
   
   .social-float {
-    @apply fixed right-6 top-1/2 transform -translate-y-1/2 z-50 flex flex-col gap-3;
+    position: fixed;
+    right: 1.5rem;
+    top: 50%;
+    transform: translateY(-50%);
+    z-index: 50;
+    display: flex;
+    flex-direction: column;
+    gap: 0.75rem;
   }
   
   .hero-text {
-    @apply animate-fade-in;
+    color: #333333 !important; /* Changed from #FADADD to dark for better contrast */
   }
   
   .masonry-grid {
     column-count: 1;
-    column-gap: 1rem;
+    column-gap: 0.5rem;
+    background: #ffffff !important; /* Changed to pure white */
+    border-radius: 1.25rem;
+    padding: 0.75rem 0.5rem;
+    box-shadow: 0 2px 16px 0 rgba(250,218,221,0.10);
   }
   
   @media (min-width: 640px) {
@@ -102,6 +155,120 @@
   }
   
   .masonry-item {
-    @apply break-inside-avoid mb-4;
+    break-inside: avoid;
+    margin-bottom: 0.5rem;
   }
+
+  .card, .fritzy-card {
+    background: #ffffff !important; /* Force pure white */
+    border: 1px solid #ffffff !important; /* Pure white border */
+    border-radius: 1.25rem;
+    box-shadow: 0 2px 16px 0 rgba(250,218,221,0.10);
+    padding: 2.5em 2em;
+    color: #333333 !important; /* Force dark text */
+  }
+
+  /* Additional fixes for white elements */
+  input, textarea, select {
+    background: #ffffff !important;
+    color: #333333 !important;
+    border: 1px solid #fadadd !important;
+  }
+
+  .bg-white {
+    background-color: #ffffff !important;
+  }
+
+  .text-white {
+    color: #ffffff !important;
+  }
+
+  #root {
+    max-width: 1280px;
+    margin: 0 auto;
+    padding: 2rem;
+    text-align: center;
+  }
+
+  .logo {
+    height: 6em;
+    padding: 1.5em;
+    will-change: filter;
+    transition: filter 300ms;
+  }
+  .logo:hover {
+    filter: drop-shadow(0 0 2em #646cffaa);
+  }
+  .logo.react:hover {
+    filter: drop-shadow(0 0 2em #61dafbaa);
+  }
+
+  @keyframes logo-spin {
+    from {
+      transform: rotate(0deg);
+    }
+    to {
+      transform: rotate(360deg);
+    }
+  }
+
+  @media (prefers-reduced-motion: no-preference) {
+    a:nth-of-type(2) .logo {
+      animation: logo-spin infinite 20s linear;
+    }
+  }
+
+  @media (prefers-reduced-motion: reduce) {
+    .logo {
+      animation: none !important;
+    }
+  }
+
+  .read-the-docs {
+    color: #888;
+  }
+}
+
+/* Border Reset System */
+*, *::before, *::after {
+  box-sizing: border-box;
+  border-width: 0;
+  border-style: solid;
+  border-color: currentColor;
+}
+
+/* Utility Classes for Borders */
+.border-1 { border-width: 1px !important; }
+.border-2 { border-width: 2px !important; }
+.border-4 { border-width: 4px !important; }
+.border-solid { border-style: solid !important; }
+.border-dashed { border-style: dashed !important; }
+.border-dotted { border-style: dotted !important; }
+.border-none { border-width: 0 !important; border-style: none !important; }
+
+/* Border Colors (light/dark theme support) */
+.border-default { border-color: #e5e7eb !important; }
+.dark .border-default { border-color: #374151 !important; }
+.border-accent { border-color: #ec4899 !important; }
+.dark .border-accent { border-color: #f472b6 !important; }
+
+/* Focus States for Accessibility */
+:focus {
+  outline: 2px solid #ec4899;
+  outline-offset: 2px;
+}
+:focus-visible {
+  outline: 2px solid #6366f1;
+  outline-offset: 2px;
+}
+
+/* Responsive (Mobile-first) */
+@media (min-width: 640px) {
+  .sm\:border-2 { border-width: 2px !important; }
+}
+@media (min-width: 768px) {
+  .md\:border-4 { border-width: 4px !important; }
+}
+@media (min-width: 1024px) {
+  .lg\:border-4 { border-width: 4px !important; }
 }

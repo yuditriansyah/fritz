@@ -1,4 +1,3 @@
-
 import React from 'react';
 import { Button } from '@/components/ui/button';
 import { Card, CardContent } from '@/components/ui/card';
@@ -8,10 +7,10 @@ const HeroSection = () => {
   const profileData = {
     fullName: 'Fritzy Rosmerian',
     stageName: 'Fritzy',
-    dateOfBirth: 'March 15, 1998',
-    group: 'Solo Artist',
-    height: '165 cm',
-    hobbies: ['Dancing', 'Reading', 'Photography', 'Cooking']
+    dateOfBirth: 'July 28, 2008',
+    group: 'JKT48 Group',
+    height: '157 cm',
+    hobbies: ['Modelling', 'Dancing', 'And Magic' ]
   };
 
   return (
@@ -21,7 +20,7 @@ const HeroSection = () => {
         <div 
           className="absolute inset-0" 
           style={{
-            backgroundImage: `url("data:image/svg+xml,%3Csvg width='60' height='60' viewBox='0 0 60 60' xmlns='http://www.w3.org/2000/svg'%3E%3Cg fill='none' fill-rule='evenodd'%3E%3Cg fill='%23FFB6C1' fill-opacity='0.1'%3E%3Ccircle cx='30' cy='30' r='4'/%3E%3C/g%3E%3C/g%3E%3C/svg%3E")`
+            backgroundImage: `url("data:image/svg+xml,%3Csvg width='60' height='60' viewBox='0 0 60 60' xmlns='http://www.w3.org/2000/svg'%3E%3Ccircle cx='30' cy='30' r='4' fill='%23fff' fill-opacity='0.7'/%3E%3Ccircle cx='15' cy='15' r='3' fill='%23FFB6C1' fill-opacity='0.5'/%3E%3Ccircle cx='45' cy='45' r='3' fill='%23FFB6C1' fill-opacity='0.5'/%3E%3C/svg%3E")`
           }}
         ></div>
       </div>
@@ -32,7 +31,7 @@ const HeroSection = () => {
           <div className="relative animate-fade-in">
             <div className="relative">
               <img
-                src="https://images.unsplash.com/photo-1649972904349-6e44c42644a7?w=600&h=800&fit=crop&crop=face&auto=format"
+                src="https://cdn.idn.media/idnaccount/avatar/500/f4d25811b1b50effd560fb480cac8ba0.webp?v=1746084944"
                 alt="Fritzy Rosmerian"
                 className="w-full h-[600px] object-cover rounded-3xl shadow-2xl"
               />
@@ -58,7 +57,8 @@ const HeroSection = () => {
                 </span>
               </h1>
               <p className="text-xl text-gray-600 font-nunito">
-                Your ultimate destination for everything Fritzy Rosmerian
+                Abracadabra! Si pesulap yang siap membuat hatimu terpikat. Halo semuanya, it's me, Fritzy.
+(Abracadabra! The magician ready to captivate your heart. Hello everyone, it's me, Fritzy)
               </p>
             </div>
 
@@ -109,10 +109,10 @@ const HeroSection = () => {
                 </div>
 
                 <div className="mt-8 flex flex-col sm:flex-row gap-4">
-                  <Button className="fritzy-button flex-1">
+                  <Button className="fritzy-button flex-1" data-scrolltop>
                     View Gallery
                   </Button>
-                  <Button variant="outline" className="flex-1 border-fritzy-pink-dark text-fritzy-pink-dark hover:bg-fritzy-pink/10">
+                  <Button variant="outline" className="flex-1 border-fritzy-pink-dark text-fritzy-pink-dark hover:bg-fritzy-pink/10" data-scrolltop>
                     Latest News
                   </Button>
                 </div>
@@ -122,16 +122,12 @@ const HeroSection = () => {
             {/* Quick Stats */}
             <div className="grid grid-cols-3 gap-4">
               <div className="text-center p-4 fritzy-card rounded-2xl">
-                <div className="text-2xl font-bold text-fritzy-pink-dark">500K+</div>
+                <div className="text-2xl font-bold text-fritzy-pink-dark">600K+</div>
                 <div className="text-sm text-gray-600">Followers</div>
               </div>
               <div className="text-center p-4 fritzy-card rounded-2xl">
-                <div className="text-2xl font-bold text-fritzy-pink-dark">25+</div>
+                <div className="text-2xl font-bold text-fritzy-pink-dark">90+</div>
                 <div className="text-sm text-gray-600">Performances</div>
-              </div>
-              <div className="text-center p-4 fritzy-card rounded-2xl">
-                <div className="text-2xl font-bold text-fritzy-pink-dark">12</div>
-                <div className="text-sm text-gray-600">Albums</div>
               </div>
             </div>
           </div>
