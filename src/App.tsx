@@ -7,6 +7,7 @@ import { useEffect } from "react";
 import Navigation from "./components/Navigation";
 import SocialFloat from "./components/SocialFloat";
 import Index from "./pages/Index";
+import About from "./pages/About";
 import Gallery from "./pages/Gallery";
 import Schedule from "./pages/Schedule";
 import Timeline from "./pages/Timeline";
@@ -39,17 +40,20 @@ const App = () => {
         <Toaster />
         <Sonner />
         <BrowserRouter>
-          <div className="min-h-screen w-full">
+          <div className="min-h-screen w-full overflow-x-hidden">
             <Navigation />
             <SocialFloat />
-            <Routes>
-              <Route path="/" element={<Index />} />
-              <Route path="/gallery" element={<Gallery />} />
-              <Route path="/schedule" element={<Schedule />} />
-              <Route path="/timeline" element={<Timeline />} />
-              {/* ADD ALL CUSTOM ROUTES ABOVE THE CATCH-ALL "*" ROUTE */}
-              <Route path="*" element={<NotFound />} />
-            </Routes>
+            <main className="w-full">
+              <Routes>
+                <Route path="/" element={<Index />} />
+                <Route path="/about" element={<About />} />
+                <Route path="/gallery" element={<Gallery />} />
+                <Route path="/schedule" element={<Schedule />} />
+                <Route path="/timeline" element={<Timeline />} />
+                {/* ADD ALL CUSTOM ROUTES ABOVE THE CATCH-ALL "*" ROUTE */}
+                <Route path="*" element={<NotFound />} />
+              </Routes>
+            </main>
             <AutoScrollNavigation />
           </div>
         </BrowserRouter>

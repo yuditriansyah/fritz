@@ -3,52 +3,85 @@ import HeroSection from '@/components/HeroSection';
 import { Card, CardContent } from '@/components/ui/card';
 import { Button } from '@/components/ui/button';
 import { Link } from 'react-router-dom';
-import { Calendar, Image, Star } from 'lucide-react';
+import { Calendar, Image, Star, Play, User } from 'lucide-react';
 import { motion } from 'framer-motion';
+import CleanCard from '@/components/CleanCard';
+import CleanGrid from '@/components/CleanGrid';
 
 const Index = () => {
   const quickLinks = [
     {
-      title: 'Latest Gallery',
-      description: 'View recent photos from events and photoshoots',
-      icon: Image,
-      link: '/gallery',
-      color: 'from-fritzy-pink to-fritzy-pink-dark'
+      title: 'About Fritzy',
+      description: 'Discover Fritzy\'s journey and connect through social media',
+      icon: User,
+      link: '/about',
+      color: 'from-pink-500 to-rose-600'
     },
     {
-      title: 'Upcoming Events',
-      description: 'Check Fritzy\'s schedule for theater shows and video calls',
+      title: 'Photo Gallery',
+      description: 'Browse stunning photos from events and behind-the-scenes',
+      icon: Image,
+      link: '/gallery',
+      color: 'from-purple-500 to-pink-500'
+    },
+    {
+      title: 'Schedule',
+      description: 'Stay updated with upcoming shows and appearances',
       icon: Calendar,
       link: '/schedule',
-      color: 'from-fritzy-purple to-fritzy-purple-dark'
+      color: 'from-indigo-500 to-purple-600'
     },
     {
       title: 'Timeline',
-      description: 'See Fritzy\'s journey and milestones as an idol',
+      description: 'Explore milestones, Total Performance, and Music Videos',
       icon: Star,
       link: '/timeline',
-      color: 'from-purple-400 to-fritzy-pink'
+      color: 'from-amber-400 to-orange-500'
     }
   ];
 
   const recentHighlights = [
     {
-      title: 'New Album Announcement',
-      date: '2024-06-18',
-      description: 'Fritzy announces "Dreams Come True" - her most personal album yet',
-      image: 'https://images.unsplash.com/photo-1649972904349-6e44c42644a7?w=300&h=200&fit=crop&auto=format'
+      title: 'Go And Fight Music Video',
+      date: '2025-05-22',
+      description: 'Watch the latest music video JKT48 - Go And Fight',
+      image: 'https://i.ytimg.com/vi/V5t-MdoYhJM/hqdefault.jpg?sqp=-oaymwEnCNACELwBSFryq4qpAxkIARUAAIhCGAHYAQHiAQoIGBACGAY4AUAB&rs=AOn4CLBqGpJCLt4qVI050sE-UM282jkgmw',
+      link: 'https://www.youtube.com/watch?v=V5t-MdoYhJM'
     },
     {
-      title: 'Summer Tour Dates',
-      date: '2024-06-15',
-      description: 'Get ready for an amazing summer tour across 15 cities',
-      image: 'https://images.unsplash.com/photo-1581091226825-a6a2a5aee158?w=300&h=200&fit=crop&auto=format'
+      title: 'MV JKT48 - Belalang Yang Membangkang',
+      date: '2024-08-22',
+      description: 'MV JKT48 - Belalang Yang Membangkang JKT48 Trainee',
+      image: 'https://i.ytimg.com/vi/Ztg79dr34n4/hqdefault.jpg?sqp=-oaymwEnCNACELwBSFryq4qpAxkIARUAAIhCGAHYAQHiAQoIGBACGAY4AUAB&rs=AOn4CLB3CQarK3G2kJowMDaskNEORVCmcA',
+      link: 'https://www.youtube.com/watch?v=Ztg79dr34n4'
     },
     {
-      title: 'Charity Event Success',
-      date: '2024-06-12',
-      description: 'Music for a Cause event raises funds for education initiatives',
-      image: 'https://images.unsplash.com/photo-1721322800607-8c38375eef04?w=300&h=200&fit=crop&auto=format'
+      title: 'Akibat Damage 43, Member Harus Belajar',
+      date: '2025-05-27',
+      description: 'Member JKT48 siap buktikan bahwa mereka siap jadi jago main Free Fire! ',
+      image: 'https://img.youtube.com/vi/TKvwxi6zVh8/mqdefault.jpg',
+      link: 'https://www.youtube.com/watch?v=TKvwxi6zVh8'
+    },
+    {
+      title: 'Sahur Bowl - Puasa, Takjil, THR',
+      date: '2025-03-28',
+      description: 'Makan sahur sambil ngobrol santai, tapi topiknya gacukup satu. Ada kejutan apalagi yaa di Sahur Bowl ?',
+      image: 'https://img.youtube.com/vi/NiDen1GrWXc/mqdefault.jpg',
+      link: 'https://www.youtube.com/watch?v=NiDen1GrWXc'
+    },
+    {
+      title: 'Breakfest Time with Fritzy',
+      date: '2024-11-16',
+      description: 'Serial Breakfast Time ini akan membantu kita memahami setiap keunikan dari member generasi 12 lebih dekat lagi.',
+      image: 'https://img.youtube.com/vi/6fqJMH5KPmA/mqdefault.jpg',
+      link: 'https://www.youtube.com/watch?v=6fqJMH5KPmA'
+    },
+    {
+      title: '[CEKIDOT] TAHUN BARUAN EDISI JOGJA!',
+      date: '2025-01-21',
+      description: 'Setelah tampil di event Swara Prambanan, para member JKT48 yang berada di Yogyakarta menikmati waktu liburan dengan mengikuti Lava Tour! 🚙✨',
+      image: 'https://img.youtube.com/vi/A_oJveTk21Q/mqdefault.jpg',
+      link: 'https://www.youtube.com/watch?v=A_oJveTk21Q'
     }
   ];
 
@@ -66,31 +99,26 @@ const Index = () => {
       {/* Hero Section */}
       <HeroSection />
 
-      {/* Mobile-only #BetterWithFritzy Banner */}
-      <div className="flex w-full justify-center items-center py-6 sm:py-8 md:hidden">
-        <span className="text-2xl sm:text-3xl font-bold text-fritzy-pink-dark text-center px-4">#BetterWithFritzy</span>
-      </div>
-
       {/* Quick Links Section */}
       <motion.div
-        className="py-20 px-4 bg-gradient-to-br from-white to-fritzy-pink/10"
+        className="py-12 sm:py-16 lg:py-20 px-4 bg-gradient-to-br from-white to-fritzy-pink/10"
         initial="hidden"
         whileInView="visible"
         viewport={{ once: true, amount: 0.2 }}
         variants={fadeInUp}
       >
         <div className="container mx-auto max-w-6xl">
-          <div className="text-center mb-12 flex flex-col items-center justify-center">
-            <h2 className="text-3xl md:text-4xl font-poppins font-bold text-gray-800 mb-4">
+          <div className="text-center mb-8 sm:mb-12 flex flex-col items-center justify-center">
+            <h2 className="text-2xl sm:text-3xl lg:text-4xl font-poppins font-bold text-gray-800 mb-4">
               Explore Fritzy's World
             </h2>
-            <p className="text-lg text-gray-600 font-nunito max-w-2xl mx-auto">
-              Quick access to the most popular sections of our fan community
+            <p className="text-base sm:text-lg text-gray-600 font-nunito max-w-2xl mx-auto px-4">
+              Quick access to the most popular sections of Fritzy World
             </p>
           </div>
 
           <div className="flex justify-center">
-            <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
+            <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-4 sm:gap-6 w-full max-w-6xl">
               {quickLinks.map((item, index) => (
                 <motion.div
                   key={index}
@@ -103,7 +131,7 @@ const Index = () => {
                   <Link to={item.link} className="flex justify-center w-full">
                     <Card className="fritzy-card h-full group cursor-pointer hover:transform hover:scale-105 transition-all duration-300 mx-auto">
                       <CardContent className="p-6 text-center h-full flex flex-col">
-                        <div className={`w-16 h-16 mx-auto mb-4 rounded-full bg-gradient-to-r ${item.color} flex items-center justify-center group-hover:scale-110 transition-transform duration-300`}>
+                        <div className={`w-16 h-16 mx-auto mb-4 rounded-lg bg-gradient-to-r ${item.color} flex items-center justify-center group-hover:scale-105 transition-transform duration-300 shadow-md`}>
                           <item.icon className="w-8 h-8 text-white" />
                         </div>
                         <h3 className="text-xl font-poppins font-bold text-gray-800 mb-2 group-hover:text-fritzy-pink-dark transition-colors">
@@ -113,7 +141,7 @@ const Index = () => {
                           {item.description}
                         </p>
                         <div className="mt-4">
-                          <Button variant="outline" size="sm" className="border-fritzy-pink-dark text-fritzy-pink-dark hover:bg-fritzy-pink/10 group-hover:border-fritzy-pink group-hover:text-fritzy-pink transition-colors">
+                          <Button size="sm" className="fritzy-button">
                             Explore
                           </Button>
                         </div>
@@ -145,7 +173,8 @@ const Index = () => {
             </p>
           </div>
 
-          <div className="grid md:grid-cols-3 gap-8">
+          {/* Responsive Grid Layout */}
+          <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6 sm:gap-8">
             {recentHighlights.map((highlight, index) => (
               <motion.div
                 key={index}
@@ -155,22 +184,46 @@ const Index = () => {
                 viewport={{ once: true, amount: 0.2 }}
                 variants={fadeInUp}
               >
-                <Card className={`fritzy-card group overflow-hidden ${highlight.title === 'New Album Announcement' ? 'border-fritzy-pink-dark border-4 shadow-lg' : ''}`}>
-                  <img
-                    src={highlight.image}
-                    alt={highlight.title}
-                    className="w-full h-48 object-cover mb-4 rounded-xl group-hover:scale-105 transition-transform duration-300"
-                  />
-                  <CardContent className="p-6">
-                    <h3 className="text-xl font-poppins font-bold text-gray-800 mb-2">
+                <Card className={`fritzy-card group overflow-hidden cursor-pointer ${highlight.title === 'Go And Fight Music Video' ? 'border-fritzy-pink-dark border-4 shadow-lg' : ''}`}>
+                  <div 
+                    className="relative"
+                    onClick={() => window.open(highlight.link, '_blank')}
+                  >
+                    <img
+                      src={highlight.image}
+                      alt={highlight.title}
+                      className="w-full h-48 sm:h-56 object-cover group-hover:scale-105 transition-transform duration-300"
+                    />
+                    {/* Play overlay */}
+                    <div className="absolute inset-0 bg-black/40 opacity-0 group-hover:opacity-100 transition-opacity duration-300 flex items-center justify-center">
+                      <div className="bg-white rounded-lg p-3 shadow-md border border-gray-100">
+                        <Play className="w-6 h-6 text-fritzy-pink-dark fill-current" />
+                      </div>
+                    </div>
+                  </div>
+                  <CardContent className="p-4 sm:p-6">
+                    <h3 className="text-lg sm:text-xl font-poppins font-bold text-gray-800 mb-2 line-clamp-2">
                       {highlight.title}
                     </h3>
-                    <p className="text-gray-600 font-nunito text-sm mb-2">
+                    <p className="text-gray-600 font-nunito text-sm mb-4 line-clamp-3">
                       {highlight.description}
                     </p>
-                    <span className="text-xs text-gray-400 font-nunito">
-                      {highlight.date}
-                    </span>
+                    <div className="flex items-center justify-between">
+                      <span className="text-xs text-gray-400 font-nunito">
+                        {highlight.date}
+                      </span>
+                      <Button 
+                        onClick={(e) => {
+                          e.stopPropagation();
+                          window.open(highlight.link, '_blank');
+                        }}
+                        size="sm" 
+                        className="fritzy-button flex items-center gap-1.5 text-xs px-3 py-1.5"
+                      >
+                        <Play className="w-3 h-3" />
+                        Watch
+                      </Button>
+                    </div>
                   </CardContent>
                 </Card>
               </motion.div>
@@ -179,35 +232,19 @@ const Index = () => {
         </div>
       </motion.div>
 
-      {/* Newsletter Signup */}
-      <div className="py-20 px-4 bg-gradient-to-r from-fritzy-pink/20 to-fritzy-purple/20">
-        <div className="container mx-auto max-w-4xl text-center">
-          <Card className="fritzy-card">
-            <CardContent className="p-12">
-              <h2 className="text-3xl md:text-4xl font-poppins font-bold text-gray-800 mb-4">
-                Stay Connected with Fritzy
-              </h2>
-              <p className="text-lg text-gray-600 font-nunito mb-8 max-w-2xl mx-auto">
-                Be the first to know about new releases, events, and special announcements. 
-                Join our newsletter and never miss a moment!
-              </p>
-              <div className="flex flex-col sm:flex-row gap-4 max-w-md mx-auto">
-                <input
-                  type="email"
-                  placeholder="Enter your email address"
-                  className="flex-1 px-4 py-3 border border-fritzy-pink/30 rounded-full focus:outline-none focus:border-fritzy-pink-dark font-nunito"
-                />
-                <Button className="fritzy-button whitespace-nowrap">
-                  Subscribe Now
-                </Button>
-              </div>
-              <p className="text-sm text-gray-500 font-nunito mt-4">
-                We respect your privacy. Unsubscribe at any time.
-              </p>
-            </CardContent>
-          </Card>
+      {/* Footer Section */}
+      <footer className="bg-gradient-to-r from-fritzy-pink/20 to-fritzy-purple/20 py-8 px-4 border-t border-fritzy-pink/30">
+        <div className="container mx-auto max-w-6xl">
+          <div className="text-center">
+            <p className="text-gray-600 font-nunito text-sm mb-2">
+              Made with ❤️ for Fritzy Rosmerian 
+            </p>
+            <p className="text-fritzy-pink-dark font-poppins font-semibold text-base">
+              Made by Rizz
+            </p>
+          </div>
         </div>
-      </div>
+      </footer>
     </div>
   );
 };

@@ -1,274 +1,390 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import { Card, CardContent, CardHeader, CardTitle } from '@/components/ui/card';
 import { Button } from '@/components/ui/button';
-import { Input } from '@/components/ui/input';
-import { Textarea } from '@/components/ui/textarea';
 import { Badge } from '@/components/ui/badge';
-import { Users, Heart, Mail, Phone, MapPin, Instagram, Twitter } from 'lucide-react';
+import { Heart, Instagram, Twitter } from 'lucide-react';
+import { motion } from 'framer-motion';
 
 const About = () => {
-  const [formData, setFormData] = useState({
-    name: '',
-    email: '',
-    instagram: '',
-    twitter: '',
-    reason: ''
-  });
+  const [displayText, setDisplayText] = useState('');
+  const fullText = 'About Fritzy Rosmerian';
+  
+  useEffect(() => {
+    let index = 0;
+    const timer = setInterval(() => {
+      if (index <= fullText.length) {
+        setDisplayText(fullText.slice(0, index));
+        index++;
+      } else {
+        clearInterval(timer);
+      }
+    }, 100);
+    
+    return () => clearInterval(timer);
+  }, []);
 
-  const handleSubmit = (e: React.FormEvent) => {
-    e.preventDefault();
-    console.log('Form submitted:', formData);
-    // Handle form submission here
+  const fadeInUp = {
+    hidden: { opacity: 0, y: 60 },
+    visible: (i: number) => ({
+      opacity: 1,
+      y: 0,
+      transition: { delay: i * 0.2, duration: 0.8, type: 'spring' as const, stiffness: 60 },
+    }),
   };
 
-  const handleInputChange = (e: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement>) => {
-    setFormData({
-      ...formData,
-      [e.target.name]: e.target.value
-    });
+  const cardVariants = {
+    hidden: { opacity: 0, scale: 0.8, y: 50 },
+    visible: { 
+      opacity: 1, 
+      scale: 1, 
+      y: 0,
+      transition: { duration: 0.6, type: 'spring' as const, stiffness: 100 }
+    },
   };
-
-  const communityStats = [
-    { icon: Users, label: 'Active Members', value: '12.000' },
-    { icon: Heart, label: 'Project', value: '1+' },
-    { icon: Instagram, label: 'Social Followers', value: '12,000+' }
-  ];
-
-  const guidelines = [
-    'Be respectful to all community members',
-    'No hate speech or discriminatory language',
-    'Keep discussions related to Fritzy and positive topics',
-    'Share original content and give credit when reposting',
-    'Help newcomers feel welcome in our community',
-    'Report any inappropriate behavior to moderators'
-  ];
 
   return (
     <div className="min-h-screen pt-20 pb-12 px-4">
       <div className="container mx-auto max-w-6xl">
         {/* Header */}
-        <div className="text-center mb-16">
+        <motion.div 
+          className="text-center mb-16"
+          initial="hidden"
+          animate="visible"
+          variants={fadeInUp}
+          custom={0}
+        >
           <h1 className="text-4xl md:text-5xl font-poppins font-bold text-gray-800 mb-4">
-            About Fritzy Rosmerian
+            {displayText}
+            <span className="animate-pulse">|</span>
           </h1>
-          <p className="text-xl text-gray-600 font-nunito max-w-3xl mx-auto leading-relaxed">
-            We are a passionate global community of fans united by our love and support for Fritzy Rosmerian. 
-            Join us in celebrating her artistry, achievements, and the joy she brings to our lives.
-          </p>
-        </div>
+          <motion.p 
+            className="text-xl text-gray-600 font-nunito max-w-3xl mx-auto leading-relaxed"
+            variants={fadeInUp}
+            custom={1}
+          >
+            Abracadabra! Si pesulap yang siap membuat hatimu terpikat. Halo semuanya, it's me, Fritzy. 
+          </motion.p>
+        </motion.div>
 
-        {/* Community Stats */}
-        <div className="grid md:grid-cols-3 gap-6 mb-16">
-          {communityStats.map((stat, index) => (
-            <Card key={index} className="fritzy-card text-center">
-              <CardContent className="p-8">
-                <stat.icon className="w-12 h-12 text-fritzy-pink-dark mx-auto mb-4" />
-                <div className="text-3xl font-poppins font-bold text-gray-800 mb-2">
-                  {stat.value}
-                </div>
-                <div className="text-gray-600 font-nunito">
-                  {stat.label}
-                </div>
-              </CardContent>
-            </Card>
-          ))}
-        </div>
+        {/* Background Section */}
+        <motion.div 
+          className="mb-16"
+          initial="hidden"
+          whileInView="visible"
+          viewport={{ once: true, amount: 0.2 }}
+          variants={cardVariants}
+        >
+          <Card className="fritzy-card">
+            <CardHeader>
+              <CardTitle className="text-2xl font-poppins text-gray-800 flex items-center gap-3">
+                <Heart className="w-6 h-6 text-fritzy-pink-dark" />
+                Latar Belakang
+              </CardTitle>
+            </CardHeader>
+            <CardContent className="space-y-4">
+              <div className="prose prose-gray max-w-none">
+                <motion.p 
+                  className="text-gray-700 font-nunito leading-relaxed mb-4"
+                  variants={fadeInUp}
+                  custom={0}
+                >
+                  Sejak kecil Fritzy aktif di dunia hiburan. Ia mulai menekuni modeling pada usia 4 tahun dan menjadi 
+                  <strong className="text-fritzy-pink-dark"> Best Talent Putri Cilik Indonesia</strong>.
+                </motion.p>
+                
+                <motion.p 
+                  className="text-gray-700 font-nunito leading-relaxed mb-4"
+                  variants={fadeInUp}
+                  custom={1}
+                >
+                  Sejak usia 7–8 tahun Fritzy serius menekuni sulap hingga dikenal sebagai pesulap muda. 
+                  Ia sering tampil di acara TV, misalnya:
+                </motion.p>
+                
+                <motion.div 
+                  className="grid md:grid-cols-2 gap-4 mb-4"
+                  variants={fadeInUp}
+                  custom={2}
+                >
+                  <div className="bg-gradient-to-r from-fritzy-pink/10 to-rose-50 p-4 rounded-lg border border-fritzy-pink/20">
+                    <h4 className="font-semibold text-fritzy-pink-dark mb-2">Acara TV</h4>
+                    <ul className="text-sm text-gray-700 space-y-1">
+                      <li>• Little Big Shots Indonesia (GTV 2019)</li>
+                      <li>• Hitam Putih (Trans7 2019)</li>
+                      <li>• Indonesia's Got Talent - Finalis Top 5 (RCTI 2022)</li>
+                    </ul>
+                  </div>
+                  
+                  <div className="bg-gradient-to-r from-purple-50 to-fritzy-pink/10 p-4 rounded-lg border border-purple-200">
+                    <h4 className="font-semibold text-fritzy-pink-dark mb-2">Prestasi Lainnya</h4>
+                    <ul className="text-sm text-gray-700 space-y-1">
+                      <li>• Juara kompetisi dance cover K-pop (2022)</li>
+                      <li>• Best Talent Putri Cilik Indonesia</li>
+                      <li>• Pesulap muda terkenal</li>
+                    </ul>
+                  </div>
+                </motion.div>
+                
+                <motion.p 
+                  className="text-gray-700 font-nunito leading-relaxed"
+                  variants={fadeInUp}
+                  custom={3}
+                >
+                  Fritzy juga aktif menari; contohnya ia pernah menjuarai kompetisi dance cover K-pop tahun 2022. 
+                  Dengan berbagai talenta yang dimilikinya, Fritzy kini menjadi member JKT48 yang siap memukau fans 
+                  dengan kemampuan sulap, menari, dan pesonanya yang unik.
+                </motion.p>
+              </div>
+            </CardContent>
+          </Card>
+        </motion.div>
 
-        <div className="grid lg:grid-cols-2 gap-12">
-          {/* Community Information */}
-          <div className="space-y-8">
-            <Card className="fritzy-card">
-              <CardHeader>
-                <CardTitle className="text-2xl font-poppins text-gray-800 flex items-center gap-3">
-                  <Heart className="w-6 h-6 text-fritzy-pink-dark" />
-                  Our Story
-                </CardTitle>
-              </CardHeader>
-              <CardContent className="space-y-4 font-nunito text-gray-700 leading-relaxed">
-                <p>
-                  Fritzy Rosmerian was founded in 2020 by a group of dedicated fans who wanted to create 
-                  a supportive and positive space for fellow admirers of Fritzy Rosmerian. What started 
-                  as a small online community has grown into a global family of over 50,000 members.
+        {/* Prestasi dan Fakta Menarik Section */}
+        <motion.div 
+          className="mb-16"
+          initial="hidden"
+          whileInView="visible"
+          viewport={{ once: true, amount: 0.2 }}
+          variants={cardVariants}
+        >
+          <Card className="fritzy-card">
+            <CardHeader>
+              <CardTitle className="text-2xl font-poppins text-gray-800 flex items-center gap-3">
+                <Heart className="w-6 h-6 text-fritzy-pink-dark" />
+                Prestasi dan Fakta Menarik
+              </CardTitle>
+            </CardHeader>
+            <CardContent className="space-y-6">
+              <div className="grid md:grid-cols-2 gap-6">
+                {/* Prestasi Sulap */}
+                <div className="bg-gradient-to-r from-fritzy-pink/10 to-rose-50 p-5 rounded-lg border border-fritzy-pink/20">
+                  <h4 className="font-semibold text-fritzy-pink-dark mb-3 flex items-center gap-2">
+                    🎩 Pesulap Cilik Berprestasi
+                  </h4>
+                  <ul className="text-sm text-gray-700 space-y-2">
+                    <li>• <strong>Juara 1</strong> Online Magic Competition Surya Pharmacon 2022</li>
+                    <li>• <strong>Juara 1</strong> FESTA Magic Competition 2022</li>
+                    <li>• <strong>Juara 5</strong> Indonesia's Got Talent</li>
+                    <li>• <strong>Agustus 2024:</strong> Diundang tampil di America's Got Talent: Fantasy League 2024 sebagai kontestan dari Indonesia</li>
+                  </ul>
+                </div>
+
+                {/* Model Cilik */}
+                <div className="bg-gradient-to-r from-purple-50 to-fritzy-pink/10 p-5 rounded-lg border border-purple-200">
+                  <h4 className="font-semibold text-fritzy-pink-dark mb-3 flex items-center gap-2">
+                    👑 Model Cilik
+                  </h4>
+                  <ul className="text-sm text-gray-700 space-y-2">
+                    <li>• <strong>Best Talent Putri Cilik Indonesia</strong> (2018)</li>
+                    <li>• Tampil di banyak fashion show anak</li>
+                    <li>• Aktif modeling sejak usia 4 tahun</li>
+                  </ul>
+                </div>
+
+                {/* JKT48 Achievement */}
+                <div className="bg-gradient-to-r from-yellow-50 to-orange-50 p-5 rounded-lg border border-yellow-200">
+                  <h4 className="font-semibold text-fritzy-pink-dark mb-3 flex items-center gap-2">
+                    ⭐ Center Generasi 12
+                  </h4>
+                  <ul className="text-sm text-gray-700 space-y-2">
+                    <li>• Dijuluki <strong>original ace Gen 12 JKT48</strong></li>
+                    <li>• Sering mendapat posisi center dalam pertunjukan</li>
+                    <li>• Member yang menonjol di generasi 12</li>
+                  </ul>
+                </div>
+
+                {/* Hobi dan Karakter */}
+                <div className="bg-gradient-to-r from-green-50 to-emerald-50 p-5 rounded-lg border border-green-200">
+                  <h4 className="font-semibold text-fritzy-pink-dark mb-3 flex items-center gap-2">
+                    🎨 Hobi dan Karakter
+                  </h4>
+                  <ul className="text-sm text-gray-700 space-y-2">
+                    <li>• <strong>Hobi utama:</strong> Sulap, menari, dan desain</li>
+                    <li>• <strong>Suka :</strong> Matcha (Yang dulunya tidak suka :v)</li>
+                    <li>• Sering berbagi konten kreatif di media sosial</li>
+                    <li>• Terkenal dengan "gombalan" lucu di sosmed</li>
+                  </ul>
+                </div>
+              </div>
+            </CardContent>
+          </Card>
+        </motion.div>
+
+        {/* Hashtags Section */}
+        <motion.div 
+          className="mb-16"
+          initial="hidden"
+          whileInView="visible"
+          viewport={{ once: true, amount: 0.2 }}
+          variants={cardVariants}
+        >
+          {/* Popular Hashtags */}
+          <Card className="fritzy-card">
+            <CardHeader>
+              <CardTitle className="text-2xl font-poppins text-gray-800 flex items-center gap-3">
+                <Twitter className="w-6 h-6 text-fritzy-pink-dark" />
+                Popular Hashtags
+              </CardTitle>
+            </CardHeader>
+            <CardContent className="space-y-4">
+              <p className="text-gray-600 font-nunito mb-4">
+                Gunakan hashtag ini untuk terhubung dengan Fritzy di media sosial:
+              </p>
+              <div className="flex flex-wrap gap-2">
+                <Badge variant="outline" className="bg-fritzy-pink/10 border-fritzy-pink text-fritzy-pink-dark px-3 py-1 text-sm">
+                  Every-Morning: #MornZy
+                </Badge>
+                <Badge variant="outline" className="bg-fritzy-pink/10 border-fritzy-pink text-fritzy-pink-dark px-3 py-1 text-sm">
+                  Before-Bed: #SweetZyDream and #Zleep
+                </Badge>
+                <Badge variant="outline" className="bg-fritzy-pink/10 border-fritzy-pink text-fritzy-pink-dark px-3 py-1 text-sm">
+                  Encouragement: #betterwithfritzy
+                </Badge>
+                <Badge variant="outline" className="bg-fritzy-pink/10 border-fritzy-pink text-fritzy-pink-dark px-3 py-1 text-sm">
+                  School scout uniform: #PramukaZy
+                </Badge>
+                <Badge variant="outline" className="bg-fritzy-pink/10 border-fritzy-pink text-fritzy-pink-dark px-3 py-1 text-sm">
+                  Every-Friday: #FritzDay
+                </Badge>
+                <Badge variant="outline" className="bg-fritzy-pink/10 border-fritzy-pink text-fritzy-pink-dark px-3 py-1 text-sm">
+                  Swag or Helmet: #Zymet
+                </Badge>
+                <Badge variant="outline" className="bg-fritzy-pink/10 border-fritzy-pink text-fritzy-pink-dark px-3 py-1 text-sm">
+                  During Ramadan:
+                  Every-Sahur: #Zyahur
+                  Before-Iftar: #ZyapBerbuka
+                </Badge>
+                <Badge variant="outline" className="bg-fritzy-pink/10 border-fritzy-pink text-fritzy-pink-dark px-3 py-1 text-sm">
+                  Mathematics: #frikzymt
+                </Badge>
+                <Badge variant="outline" className="bg-fritzy-pink/10 border-fritzy-pink text-fritzy-pink-dark px-3 py-1 text-sm">
+                  JKT48 Private Message: #BaleZyin
+                </Badge>
+                <Badge variant="outline" className="bg-fritzy-pink/10 border-fritzy-pink text-fritzy-pink-dark px-3 py-1 text-sm">
+                  Video Call: #FritzCall
+                </Badge>
+                <Badge variant="outline" className="bg-fritzy-pink/10 border-fritzy-pink text-fritzy-pink-dark px-3 py-1 text-sm">
+                  Vacations: #Zyburan        
+                </Badge>
+                <Badge variant="outline" className="bg-fritzy-pink/10 border-fritzy-pink text-fritzy-pink-dark px-3 py-1 text-sm">
+                  DIY Magic: #DSWFRITZY (DIY Sulap With Fritzy / DIY Magic with Fritzy) 
+                </Badge>
+              </div>
+              <div className="mt-4 p-3 bg-pink-50 rounded-lg">
+                <p className="text-sm text-gray-600 font-nunito">
+                  💡 <strong>Tips:</strong> Gunakan hashtag ini saat posting tentang Fritzy untuk meningkatkan visibility dan terhubung dengan fans lainnya!
                 </p>
-                <p>
-                  Our mission is to support Fritzy in all her endeavors while fostering a welcoming 
-                  environment where fans can connect, share their creativity, and celebrate the joy 
-                  that Fritzy brings to our lives.
-                </p>
-                <p>
-                  From organizing fan projects to supporting charitable causes that align with Fritzy's 
-                  values, we strive to make a positive impact both within our community and beyond.
-                </p>
-              </CardContent>
-            </Card>
+              </div>
+            </CardContent>
+          </Card>
+        </motion.div>
 
-            {/* Community Guidelines */}
-            <Card className="fritzy-card">
-              <CardHeader>
-                <CardTitle className="text-2xl font-poppins text-gray-800 flex items-center gap-3">
-                  <Users className="w-6 h-6 text-fritzy-pink-dark" />
-                  Community Guidelines
-                </CardTitle>
-              </CardHeader>
-              <CardContent>
-                <div className="space-y-3">
-                  {guidelines.map((guideline, index) => (
-                    <div key={index} className="flex items-start gap-3">
-                      <Badge className="bg-fritzy-pink text-gray-800 text-xs">
-                        {index + 1}
-                      </Badge>
-                      <p className="text-gray-700 font-nunito">
-                        {guideline}
-                      </p>
-                    </div>
-                  ))}
+        {/* Official Social Media */}
+        <motion.div 
+          className="mb-16"
+          initial="hidden"
+          whileInView="visible"
+          viewport={{ once: true, amount: 0.2 }}
+          variants={cardVariants}
+        >
+          <Card className="fritzy-card">
+            <CardHeader>
+              <CardTitle className="text-2xl font-poppins text-gray-800 flex items-center gap-3">
+                Official Social Media
+              </CardTitle>
+            </CardHeader>
+            <CardContent className="space-y-6">
+              <p className="text-gray-600 font-nunito">
+                Ikuti akun resmi Fritzy untuk update terbaru:
+              </p>
+              
+              <div className="grid md:grid-cols-2 gap-4">
+                <div className="flex items-center gap-4 p-4 bg-gradient-to-r from-pink-50 to-rose-50 rounded-lg border border-pink-100">
+                  <Instagram className="w-8 h-8 text-pink-600" />
+                  <div>
+                    <h4 className="font-semibold text-gray-800">@jkt48.fritzy</h4>
+                    <p className="text-sm text-gray-600">Instagram personal Fritzy</p>
+                    <Button 
+                      size="sm" 
+                      className="mt-2 bg-gradient-to-r from-pink-500 to-rose-500 hover:from-pink-600 hover:to-rose-600 text-white"
+                      onClick={() => window.open('https://www.instagram.com/jkt48.fritzy', '_blank')}
+                    >
+                      Follow
+                    </Button>
+                  </div>
                 </div>
-              </CardContent>
-            </Card>
+                
+                <div className="flex items-center gap-4 p-4 bg-gradient-to-r from-blue-50 to-indigo-50 rounded-lg border border-blue-100">
+                  <Twitter className="w-8 h-8 text-blue-600" />
+                  <div>
+                    <h4 className="font-semibold text-gray-800">@RFritzy_JKT48</h4>
+                    <p className="text-sm text-gray-600">Twitter resmi Fritzy</p>
+                    <Button 
+                      size="sm" 
+                      className="mt-2 bg-gradient-to-r from-blue-500 to-indigo-500 hover:from-blue-600 hover:to-indigo-600 text-white"
+                      onClick={() => window.open('https://twitter.com/RFritzy_JKT48', '_blank')}
+                    >
+                      Follow
+                    </Button>
+                  </div>
+                </div>
+                
+                <div className="flex items-center gap-4 p-4 bg-gradient-to-r from-red-50 to-pink-50 rounded-lg border border-red-100">
+                  <img 
+                    src="https://d3g5ywftkpzr0e.cloudfront.net/wp-content/uploads/2019/04/23153500/IDN-logo.png" 
+                    alt="IDN Logo" 
+                    className="w-8 h-8 object-contain"
+                  />
+                  <div>
+                    <h4 className="font-semibold text-gray-800">Fritzy JKT48</h4>
+                    <p className="text-sm text-gray-600">IDN Live</p>
+                    <Button 
+                      size="sm" 
+                      className="mt-2 bg-gradient-to-r from-red-500 to-pink-500 hover:from-red-600 hover:to-pink-600 text-white"
+                      onClick={() => window.open('https://app.idn.media/6X95JUDQAkoBPCpx9', '_blank')}
+                    >
+                      Visit
+                    </Button>
+                  </div>
+                </div>
+                
+                <div className="flex items-center gap-4 p-4 bg-gradient-to-r from-purple-50 to-pink-50 rounded-lg border border-purple-100">
+                  <img 
+                    src="https://i.ibb.co/m5rtfnfZ/icon.png" 
+                    alt="SHOWROOM Logo" 
+                    className="w-8 h-8 object-contain"
+                  />
+                  <div>
+                    <h4 className="font-semibold text-gray-800">SHOWROOM</h4>
+                    <p className="text-sm text-gray-600">Live streaming platform</p>
+                    <Button 
+                      size="sm" 
+                      className="mt-2 bg-gradient-to-r from-purple-500 to-pink-500 hover:from-purple-600 hover:to-pink-600 text-white"
+                      onClick={() => window.open('https://www.showroom-live.com/room/profile?room_id=510011', '_blank')}
+                    >
+                      Watch Live
+                    </Button>
+                  </div>
+                </div>
+              </div>              
+            </CardContent>
+          </Card>
+        </motion.div>
 
-            {/* Contact Information */}
-            <Card className="fritzy-card">
-              <CardHeader>
-                <CardTitle className="text-2xl font-poppins text-gray-800 flex items-center gap-3">
-                  <Mail className="w-6 h-6 text-fritzy-pink-dark" />
-                  Contact Us
-                </CardTitle>
-              </CardHeader>
-              <CardContent className="space-y-4">
-                <div className="flex items-center gap-3 text-gray-700">
-                  <Mail className="w-5 h-5 text-fritzy-pink-dark" />
-                  <span className="font-nunito">admin@fritzyforce.com</span>
-                </div>
-                <div className="flex items-center gap-3 text-gray-700">
-                  <Instagram className="w-5 h-5 text-fritzy-pink-dark" />
-                  <span className="font-nunito">@fritzyforce</span>
-                </div>
-                <div className="flex items-center gap-3 text-gray-700">
-                  <Twitter className="w-5 h-5 text-fritzy-pink-dark" />
-                  <span className="font-nunito">@FritzyForce</span>
-                </div>
-              </CardContent>
-            </Card>
+        {/* Source/Reference Section */}
+        <motion.div 
+          className="mb-8"
+          initial="hidden"
+          whileInView="visible"
+          viewport={{ once: true, amount: 0.2 }}
+          variants={cardVariants}
+        >
+          <div className="bg-gradient-to-r from-gray-50 to-gray-100 p-4 rounded-lg border border-gray-200">
+            <p className="text-xs text-gray-500 font-nunito text-center">
+              <strong>Sumber:</strong> Informasi disusun dari profil resmi dan wawancara media (JKT48 Fandom, KapanLagi, IDN Times) tentang Fritzy Rosmerian
+            </p>
           </div>
-
-          {/* Join Form */}
-          <div>
-            <Card className="fritzy-card">
-              <CardHeader>
-                <CardTitle className="text-2xl font-poppins text-gray-800 text-center">
-                  Join Our Community
-                </CardTitle>
-                <p className="text-gray-600 font-nunito text-center">
-                  Become part of the Fritzy Rosmerian family and connect with fellow fans worldwide!
-                </p>
-              </CardHeader>
-              <CardContent>
-                <form onSubmit={handleSubmit} className="space-y-6">
-                  <div>
-                    <label className="block text-sm font-semibold text-gray-700 mb-2">
-                      Full Name *
-                    </label>
-                    <Input
-                      name="name"
-                      value={formData.name}
-                      onChange={handleInputChange}
-                      placeholder="Enter your full name"
-                      className="border-fritzy-pink/30 focus:border-fritzy-pink-dark"
-                      required
-                    />
-                  </div>
-
-                  <div>
-                    <label className="block text-sm font-semibold text-gray-700 mb-2">
-                      Email Address *
-                    </label>
-                    <Input
-                      name="email"
-                      type="email"
-                      value={formData.email}
-                      onChange={handleInputChange}
-                      placeholder="Enter your email address"
-                      className="border-fritzy-pink/30 focus:border-fritzy-pink-dark"
-                      required
-                    />
-                  </div>
-
-                  <div className="grid md:grid-cols-2 gap-4">
-                    <div>
-                      <label className="block text-sm font-semibold text-gray-700 mb-2">
-                        Instagram Handle
-                      </label>
-                      <Input
-                        name="instagram"
-                        value={formData.instagram}
-                        onChange={handleInputChange}
-                        placeholder="@yourusername"
-                        className="border-fritzy-pink/30 focus:border-fritzy-pink-dark"
-                      />
-                    </div>
-                    <div>
-                      <label className="block text-sm font-semibold text-gray-700 mb-2">
-                        Twitter Handle
-                      </label>
-                      <Input
-                        name="twitter"
-                        value={formData.twitter}
-                        onChange={handleInputChange}
-                        placeholder="@yourusername"
-                        className="border-fritzy-pink/30 focus:border-fritzy-pink-dark"
-                      />
-                    </div>
-                  </div>
-
-                  <div>
-                    <label className="block text-sm font-semibold text-gray-700 mb-2">
-                      Why do you want to join? *
-                    </label>
-                    <Textarea
-                      name="reason"
-                      value={formData.reason}
-                      onChange={handleInputChange}
-                      placeholder="Tell us why you'd like to be part of our community..."
-                      className="border-fritzy-pink/30 focus:border-fritzy-pink-dark min-h-[100px]"
-                      required
-                    />
-                  </div>
-
-                  <div className="space-y-4">
-                    <div className="flex items-start gap-3">
-                      <input
-                        type="checkbox"
-                        id="guidelines"
-                        className="mt-1"
-                        required
-                      />
-                      <label htmlFor="guidelines" className="text-sm text-gray-700 font-nunito">
-                        I agree to follow the community guidelines and maintain a respectful, 
-                        positive environment for all members.
-                      </label>
-                    </div>
-
-                    <div className="flex items-start gap-3">
-                      <input
-                        type="checkbox"
-                        id="newsletter"
-                        className="mt-1"
-                      />
-                      <label htmlFor="newsletter" className="text-sm text-gray-700 font-nunito">
-                        I would like to receive updates about Fritzy and community events 
-                        via email.
-                      </label>
-                    </div>
-                  </div>
-
-                  <Button type="submit" className="w-full fritzy-button">
-                    Join Fritzy Rosmerian
-                  </Button>
-                </form>
-              </CardContent>
-            </Card>
-          </div>
-        </div>
+        </motion.div>
       </div>
     </div>
   );

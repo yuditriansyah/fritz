@@ -8,6 +8,32 @@
     <meta name="description" content="Official fan website for idol Fritzy Rosmerian - Latest news, gallery, schedule and more!" />
     <meta name="author" content="Michirine ZD With Love" />
 
+    <!-- Critical CSS to prevent black lines -->
+    <style>
+      /* CRITICAL: Prevent any black lines during page load */
+      *, *::before, *::after {
+        border: none !important;
+        outline: none !important;
+        border-width: 0 !important;
+        border-style: none !important;
+        box-sizing: border-box !important;
+      }
+      html {
+        visibility: hidden;
+        opacity: 0;
+      }
+      html.loaded {
+        visibility: visible;
+        opacity: 1;
+        transition: opacity 0.3s ease-in-out;
+      }
+      body {
+        background: #fadadd !important;
+        margin: 0 !important;
+        padding: 0 !important;
+      }
+    </style>
+
     <!-- Custom Fonts -->
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
@@ -25,5 +51,24 @@
   <body>
     <div id="root"></div>
     <script type="module" src="/src/main.tsx"></script>
+    
+    <!-- Critical JavaScript to prevent FOUC -->
+    <script>
+      // Immediately add loaded class to prevent flash
+      (function() {
+        function addLoadedClass() {
+          document.documentElement.classList.add('loaded');
+        }
+        
+        if (document.readyState === 'loading') {
+          document.addEventListener('DOMContentLoaded', addLoadedClass);
+        } else {
+          addLoadedClass();
+        }
+        
+        // Fallback to ensure it runs
+        setTimeout(addLoadedClass, 100);
+      })();
+    </script>
   </body>
 </html>

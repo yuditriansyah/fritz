@@ -38,10 +38,10 @@ const SocialFloat = () => {
           href={social.href}
           target={social.href.startsWith('http') ? '_blank' : '_self'}
           rel={social.href.startsWith('http') ? 'noopener noreferrer' : ''}
-          className={`group flex items-center justify-center w-12 h-12 bg-white/90 backdrop-blur-sm rounded-full shadow-lg ${social.color} hover:text-white transition-all duration-300 transform hover:scale-110`}
+          className={`group flex items-center justify-center w-10 h-10 sm:w-12 sm:h-12 bg-white/90 backdrop-blur-sm rounded-full shadow-lg ${social.color} hover:text-white transition-all duration-300 transform hover:scale-110`}
           aria-label={social.label}
         >
-          <social.icon className="w-5 h-5" />
+          <social.icon className="w-4 h-4 sm:w-5 sm:h-5" />
         </a>
       ))}
     </div>
